@@ -1,35 +1,69 @@
 # 🚗 Parking Simulator
 
 ## 📖 Introduction
-**Parking Simulator** is a project developed in **Python** that simulates the operation of a parking lot with limited resources, focusing on **concurrency management**. The program represents a realistic scenario in which multiple vehicles attempt to access a limited number of parking spaces simultaneously. The simulation uses **multithreading** to coordinate operations and includes a **graphical user interface (GUI)** with an integrated terminal for real-time control.
+**Parking Simulator** is a Python project that simulates a parking lot with limited spaces, focusing on **concurrent vehicle access**. Multiple vehicles are managed simultaneously using **multithreading**, and the system includes a **Tkinter GUI** with an integrated terminal to monitor and control the simulation in real time.
+
+---
 
 ## 🎯 Project Goal
-The main goal is to demonstrate the correct use of concurrency, synchronization, and shared resource management. The project allows observing how multiple threads interact without conflicts, dynamically showing the occupancy of parking spaces and the vehicle queue.
+The main goal is to demonstrate proper handling of concurrency, synchronization, and shared resource management. The simulation shows how multiple threads interact safely, dynamically updating parking space occupancy and the vehicle queue.
 
-## ⚙️ How it Works
-The parking lot has **10 spaces** and a **maximum queue of 5 vehicles**. Each vehicle is managed as an **independent thread**. When a car arrives, it attempts to join the queue, waits for a free space, occupies the parking spot for a simulated time, and finally frees the space upon leaving. If the queue is full, the simulation is automatically stopped to ensure system consistency.
+---
+
+## ⚙️ How It Works
+- **10 parking spaces**  
+- **Queue for up to 5 vehicles**  
+
+Each vehicle is represented as an independent thread. The workflow is:
+1. Vehicle attempts to join the queue.
+2. Waits for a free parking space.
+3. Parks for a random simulated time.
+4. Leaves and frees the space.  
+
+If the queue is full, the simulation automatically stops.
+
+---
 
 ## 🧵 Concurrency Management
-Thread synchronization is handled using:
-- **Semaphore**: limits the number of available parking spaces and controls the queue length.
-- **Lock**: protects shared variables such as the state of the parking spaces and the queue counter.  
+- **Semaphore**: limits the number of available parking spaces and queue length.  
+- **Lock**: protects shared variables, including parking space states and the queue counter.  
 
-This approach prevents race conditions and ensures system correctness even with multiple active threads.
+This ensures safety and prevents race conditions, even with multiple threads running concurrently.
+
+---
 
 ## 🖥️ Graphical User Interface
-The GUI, built with **Tkinter**, displays in real time:
-- the status of parking spaces (free or occupied)
-- the number of vehicles in the queue
-- a text-based terminal to enter commands
+- Displays parking space status (green = free, red = occupied).  
+- Shows number of vehicles in the queue.  
+- Terminal allows `run` and `stop` commands.  
+- Updates in real time every 100 ms.
 
-Parking spaces automatically change color to indicate availability, allowing easy monitoring of the parking lot status.
+---
 
 ## ⌨️ Available Commands
-From the integrated terminal, you can use:
-- `run` → starts the simulation and generates vehicles
-- `stop` → stops the simulation
+- `run` → starts the simulation and generates vehicles.  
+- `stop` → stops the simulation.
+
+---
+
+## ▶️ Requirements to Run
+To run this project, you need:
+
+- **Python 3.8 or higher**
+- Standard Python libraries:
+  - `threading`
+  - `time`
+  - `random`
+  - `tkinter` (usually included with Python)
+- Optional: run in a terminal that supports Tkinter GUI.
+
+### Installation Notes
+- No additional installations are required if Python 3 is correctly set up.  
+- On Linux, ensure Tkinter is installed (e.g., `sudo apt install python3-tk`).  
+- On Windows and macOS, Tkinter comes pre-installed with Python.
+
+---
 
 ## ▶️ Running the Program
-To launch the simulator, run:
 ```bash
 python parking_simulator.py
