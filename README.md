@@ -72,9 +72,9 @@ Non sono richiesti pacchetti esterni.
 ## Avvio del programma
 
 Aprire PowerShell o Prompt dei comandi, posizionarsi nella cartella del progetto ed eseguire:
-
+'''bash 
 python parking_simulator.py
-
+'''
 ## Note
 
 Tkinter è incluso nell’installer ufficiale di Python per Windows.  
