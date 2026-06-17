@@ -1,69 +1,81 @@
-# 🚗 Parking Simulator
+# Parking Simulator
 
-## 📖 Introduction
-**Parking Simulator** is a Python project that simulates a parking lot with limited spaces, focusing on **concurrent vehicle access**. Multiple vehicles are managed simultaneously using **multithreading**, and the system includes a **Tkinter GUI** with an integrated terminal to monitor and control the simulation in real time.
+## Panoramica
 
----
+Parking Simulator è un progetto Python che simula la gestione di un parcheggio a capacità limitata, con particolare attenzione alla programmazione concorrente e alla sincronizzazione tra thread.
 
-## 🎯 Project Goal
-The main goal is to demonstrate proper handling of concurrency, synchronization, and shared resource management. The simulation shows how multiple threads interact safely, dynamically updating parking space occupancy and the vehicle queue.
+Il sistema utilizza multithreading per rappresentare veicoli indipendenti e integra un’interfaccia grafica sviluppata con Tkinter per il monitoraggio in tempo reale dello stato del parcheggio.
 
----
+## Obiettivo
 
-## ⚙️ How It Works
-- **10 parking spaces**  
-- **Queue for up to 5 vehicles**  
+L’obiettivo del progetto è dimostrare la corretta gestione di:
 
-Each vehicle is represented as an independent thread. The workflow is:
-1. Vehicle attempts to join the queue.
-2. Waits for a free parking space.
-3. Parks for a random simulated time.
-4. Leaves and frees the space.  
+- concorrenza tra thread  
+- risorse condivise  
+- sincronizzazione tramite primitive di locking  
 
-If the queue is full, the simulation automatically stops.
+La simulazione riproduce scenari realistici in cui più veicoli competono per l’accesso a un numero limitato di posti auto.
 
----
+## Funzionamento
 
-## 🧵 Concurrency Management
-- **Semaphore**: limits the number of available parking spaces and queue length.  
-- **Lock**: protects shared variables, including parking space states and the queue counter.  
+Il parcheggio è composto da:
 
-This ensures safety and prevents race conditions, even with multiple threads running concurrently.
+- 10 posti auto disponibili  
+- coda massima di 5 veicoli  
 
----
+Ogni veicolo è rappresentato da un thread indipendente e segue questo ciclo:
 
-## 🖥️ Graphical User Interface
-- Displays parking space status (green = free, red = occupied).  
-- Shows number of vehicles in the queue.  
-- Terminal allows `run` and `stop` commands.  
-- Updates in real time every 100 ms.
+1. Richiesta di accesso alla coda  
+2. Attesa di un posto libero  
+3. Sosta per un intervallo di tempo casuale  
+4. Uscita dal parcheggio e rilascio del posto  
 
----
+Se la coda raggiunge la capacità massima, la simulazione viene arrestata automaticamente.
 
-## ⌨️ Available Commands
-- `run` → starts the simulation and generates vehicles.  
-- `stop` → stops the simulation.
+## Gestione della concorrenza
 
----
+Il sistema utilizza:
 
-## ▶️ Requirements to Run
-To run this project, you need:
+- Semafori (Semaphore) per limitare l’accesso ai posti disponibili e alla coda  
+- Lock (Mutex) per garantire l’accesso sicuro alle variabili condivise e prevenire race condition  
 
-- **Python 3.8 or higher**
-- Standard Python libraries:
-  - `threading`
-  - `time`
-  - `random`
-  - `tkinter` (usually included with Python)
-- Optional: run in a terminal that supports Tkinter GUI.
+Questa combinazione assicura stabilità anche in condizioni di carico elevato.
 
-### Installation Notes
-- No additional installations are required if Python 3 is correctly set up.  
-- On Linux, ensure Tkinter is installed (e.g., `sudo apt install python3-tk`).  
-- On Windows and macOS, Tkinter comes pre-installed with Python.
+## Interfaccia grafica
 
----
+L’applicazione include una GUI sviluppata con Tkinter che permette di:
 
-## ▶️ Running the Program
-```bash
+- Visualizzare lo stato dei posti in tempo reale (libero / occupato)  
+- Monitorare il numero di veicoli in coda  
+- Utilizzare un terminale integrato per i comandi  
+- Aggiornamento automatico ogni 100 ms  
+
+## Comandi disponibili
+
+| Comando | Descrizione |
+|---------|------------|
+| run     | Avvia la simulazione e genera i veicoli |
+| stop    | Arresta la simulazione |
+
+## Requisiti
+
+- Windows 10 / 11  
+- Python 3.8 o superiore  
+- Librerie standard Python:
+  - threading
+  - time
+  - random
+  - tkinter  
+
+Non sono richiesti pacchetti esterni.
+
+## Avvio del programma
+
+Aprire PowerShell o Prompt dei comandi, posizionarsi nella cartella del progetto ed eseguire:
+
 python parking_simulator.py
+
+## Note
+
+Tkinter è incluso nell’installer ufficiale di Python per Windows.  
+Assicurarsi che Python sia aggiunto alla variabile di ambiente PATH.
