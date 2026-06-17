@@ -1,3 +1,4 @@
+![header](assets/header.svg)
 # Parking Simulator
 
 ## Panoramica
